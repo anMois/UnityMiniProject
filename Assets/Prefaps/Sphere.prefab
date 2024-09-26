@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3356490511601927524}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,9 +110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc66b4dfcf12024e8a97c41c9c230fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftPoint: {fileID: 3226614388508243933, guid: 7c355758c253c804a93c440001f650ff, type: 3}
-  righttPoint: {fileID: 5551381693585989492, guid: 943d2d17c25891f4591df7cb063f7875, type: 3}
-  left: 0
-  right: 0
   trust: 0
+  index: 0
   speed: 5

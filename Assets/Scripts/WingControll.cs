@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayControll : MonoBehaviour
+public class WingControll : MonoBehaviour
 {
     [SerializeField] Transform leftWing;
     [SerializeField] Transform rightWing;

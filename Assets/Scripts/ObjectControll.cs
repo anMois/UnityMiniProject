@@ -1,35 +1,38 @@
+using System.Timers;
 using UnityEngine;
+using UnityEngine.Jobs;
 
 public class ObjectControll : MonoBehaviour
 {
-
-    [SerializeField] Transform leftPoint;
-    [SerializeField] Transform righttPoint;
-    [SerializeField] bool left;
-    public bool Left { set { left = value; } }
-    [SerializeField] bool right;
-    public bool Right { set { right = value; } }
+    [SerializeField] ObjectData objData;
 
     [SerializeField] bool trust;
     public bool Trust { get { return trust; } }
 
+    [SerializeField] int index;
+    public int Index { set { index = value; } }
+
     [SerializeField] float speed;
-    Vector3 firstPoint;
+
+    [SerializeField] bool first;
+    public bool First { set { first = value; } }
+
 
     private void Start()
     {
-        firstPoint = transform.position;
+        objData = GameObject.FindGameObjectWithTag("test").GetComponent<ObjectData>();
     }
 
     private void Update()
     {
-        if (left)
+        if(Input.GetKey(KeyCode.A) && first)
         {
-            transform.position = Vector3.Slerp(transform.position, leftPoint.position, speed * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, objData.LeftPoint.position, speed * Time.deltaTime);
         }
-        else if (right)
+
+        if(Input.GetKeyDown(KeyCode.D) && first)
         {
-            transform.position = Vector3.Slerp(transform.position, righttPoint.position, speed * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, objData.RighttPoint.position, speed * Time.deltaTime);
         }
     }
 }

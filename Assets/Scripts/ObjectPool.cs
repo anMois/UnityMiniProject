@@ -20,7 +20,8 @@ public class ObjectPool : MonoBehaviour
         for(int i = 0; i < size; i++)
         {
             ObjectControll instance = Instantiate(prefap, vector3s[i], Quaternion.identity);
-            instance.gameObject.SetActive(false);
+            //instance.gameObject.SetActive(false);
+            instance.Index = i;
             instance.transform.parent = transform;
             objPools.Add(instance);
         }
