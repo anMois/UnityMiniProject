@@ -8,12 +8,10 @@ public class ColliderCheck : MonoBehaviour
 
     [SerializeField] float x;
 
-    private void Update()
+    private void FixedUpdate()
     {
         x = Input.GetAxisRaw("Horizontal");
     }
-
-
 
     private void OnTriggerStay(Collider other)
     {

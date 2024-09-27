@@ -5,13 +5,13 @@ public class ObjectCreate : MonoBehaviour
 {
     [SerializeField] ObjectData data;
     [SerializeField] ObjectControll prefap;
-    [SerializeField] Transform createPoisition;
     [SerializeField] int size;
     [SerializeField] int maxSize;
 
     private void Start()
     {
         data = GetComponent<ObjectData>();
+        maxSize = data.zPoints.Length;
         StartCoroutine(CreateRoutine());
     }
 
@@ -20,14 +20,14 @@ public class ObjectCreate : MonoBehaviour
         Vector3[] dir = new Vector3[data.zPoints.Length];
         for (int i = 0; i < data.zPoints.Length; i++)
         {
-            dir[i] = new Vector3(0, transform.position.y, data.zPoints[i]);
+            dir[i] = new Vector3(0, prefap.transform.position.y, data.zPoints[i]);
         }
 
         for (int i = 0; i < data.zPoints.Length; i++)
         {
-            Instantiate(prefap, dir[i], Quaternion.identity);
             prefap.Index = i;
             size++;
+            Instantiate(prefap, dir[i], Quaternion.identity);
             yield return null;
         }
     }

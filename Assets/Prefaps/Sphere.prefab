@@ -112,5 +112,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objData: {fileID: 0}
   speed: 10
+  index: 0
   trust: 0
   first: 0
+  choice: 0
+  offset: {x: 0, y: 0, z: 0}

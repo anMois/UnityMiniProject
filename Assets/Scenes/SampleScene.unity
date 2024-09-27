@@ -562,7 +562,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 505102141}
   m_LocalRotation: {x: -0, y: 0.0000004768371, z: -0, w: 1}
-  m_LocalPosition: {x: -0.50000024, y: 4.25, z: -7.3}
+  m_LocalPosition: {x: -0.50000024, y: 4.2, z: -7.3}
   m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -771,6 +771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objControll: {fileID: 0}
+  x: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,6 +982,7 @@ GameObject:
   - component: {fileID: 1184077921}
   - component: {fileID: 1184077920}
   - component: {fileID: 1184077922}
+  - component: {fileID: 1184077923}
   m_Layer: 0
   m_Name: ObjectPool
   m_TagString: test
@@ -1000,7 +1002,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c1b44908a387e3439b7ac3598843b12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objPools: []
   prefap: {fileID: 3356490511601927524, guid: 7f5c33f3fecba7741885685cb527c10d, type: 3}
   data: {fileID: 0}
   size: 10
@@ -1044,6 +1045,22 @@ MonoBehaviour:
   - -1.4
   leftPoint: {fileID: 538273637}
   righttPoint: {fileID: 1430010252}
+--- !u!114 &1184077923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184077919}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e88a029287bd3fd4689aaf9b02706e9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 0}
+  prefap: {fileID: 3356490511601927524, guid: 7f5c33f3fecba7741885685cb527c10d, type: 3}
+  size: 0
+  maxSize: 0
 --- !u!1 &1430010251
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,7 +1168,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1584781835}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.49999976, y: 4.25, z: -7.3}
+  m_LocalPosition: {x: 0.49999976, y: 4.2, z: -7.3}
   m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -34,27 +34,19 @@ public class ObjectControll : MonoBehaviour
 
         if (Physics.Raycast(transform.position, Vector3.back, out RaycastHit hit, 0.5f) == false)
         {
-            if (first)
+            if (first || choice || index == 0 )
                 return;
 
-            index--;
-            transform.position = Vector3.MoveTowards(transform.position, GetOffset(), speed * Time.deltaTime);
+            Debug.Log("1");
+            transform.position = Vector3.MoveTowards(transform.position, GetOffset(), 1);
         }
     }
 
     private Vector3 GetOffset()
     {
-        offset = new Vector3(transform.position.x, transform.position.y, objData.zPoints[index]);
+        offset = new Vector3(transform.position.x, transform.position.y, objData.zPoints[--index]);
 
         return offset;
-    }
-
-    private bool ConfirmInput()
-    {
-        if (choice && trust)
-            return true;
-
-        return false;
     }
 
     private void MoveTrail()
@@ -62,5 +54,32 @@ public class ObjectControll : MonoBehaviour
         Vector3 offset = new Vector3(transform.position.x, transform.position.y, objData.zPoints[index--]);
 
         transform.position = Vector3.MoveTowards(transform.position, offset, speed * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.transform.CompareTag("Tray"))
+        {
+            first = false;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.transform.CompareTag("Tray"))
+        {
+            if (trust)
+                transform.Translate(Vector3.left * speed * Time.deltaTime);
+            else
+                transform.Translate(Vector3.right * speed * Time.deltaTime);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform.CompareTag("Tray"))
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
