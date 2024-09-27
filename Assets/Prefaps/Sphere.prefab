@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc66b4dfcf12024e8a97c41c9c230fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objData: {fileID: 0}
+  speed: 10
   trust: 0
-  index: 0
-  speed: 5
+  first: 0

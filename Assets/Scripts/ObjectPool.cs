@@ -4,26 +4,28 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    [SerializeField] List<ObjectControll> objPools = new List<ObjectControll>();
+    [SerializeField] Queue<ObjectControll> objPools = new Queue<ObjectControll>();
     [SerializeField] ObjectControll prefap;
+    [SerializeField] ObjectData data;
     [SerializeField] int size;
-
-    [SerializeField] float[] zPoints;
 
     private void Awake()
     {
-        Vector3[] vector3s = new Vector3[zPoints.Length];
-        for (int i = 0; i < zPoints.Length; i++)
+        data = GetComponent<ObjectData>();
+
+        Vector3[] offset = new Vector3[data.zPoints.Length];
+        for (int i = 0; i < data.zPoints.Length; i++)
         {
-            vector3s[i] = new Vector3(prefap.transform.position.x, prefap.transform.position.y, zPoints[i]);
+            offset[i] = new Vector3(0, prefap.transform.position.y, data.zPoints[i]);
         }
         for(int i = 0; i < size; i++)
         {
-            ObjectControll instance = Instantiate(prefap, vector3s[i], Quaternion.identity);
-            //instance.gameObject.SetActive(false);
-            instance.Index = i;
+            ObjectControll instance = Instantiate(prefap, offset[i], Quaternion.identity);
             instance.transform.parent = transform;
-            objPools.Add(instance);
+            instance.Index = i;
+            objPools.Enqueue(instance);
         }
     }
+
+    
 }

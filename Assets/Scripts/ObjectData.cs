@@ -9,6 +9,15 @@ public class ObjectData : MonoBehaviour
     [SerializeField] Transform leftPoint;
     [SerializeField] Transform righttPoint;
 
-    public Transform LeftPoint {  get { return leftPoint; } }
-    public Transform RighttPoint { get {return righttPoint; } }
+    public Vector3 GetPosition(bool trust)
+    {
+        if(trust)
+        {
+            return leftPoint.position;
+        }
+        else
+        {
+            return righttPoint.position;
+        }
+    }
 }

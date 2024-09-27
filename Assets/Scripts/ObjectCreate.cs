@@ -1,9 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectCreate : MonoBehaviour
 {
+    [SerializeField] ObjectData data;
     [SerializeField] ObjectControll prefap;
     [SerializeField] Transform createPoisition;
     [SerializeField] int size;
@@ -11,19 +11,24 @@ public class ObjectCreate : MonoBehaviour
 
     private void Start()
     {
+        data = GetComponent<ObjectData>();
         StartCoroutine(CreateRoutine());
     }
 
     IEnumerator CreateRoutine()
     {
-        WaitForSeconds delay = new WaitForSeconds(1f);
-
-        while (size < maxSize)
+        Vector3[] dir = new Vector3[data.zPoints.Length];
+        for (int i = 0; i < data.zPoints.Length; i++)
         {
-            Instantiate(prefap, createPoisition.position, Quaternion.identity);
-            yield return null;
+            dir[i] = new Vector3(0, transform.position.y, data.zPoints[i]);
+        }
+
+        for (int i = 0; i < data.zPoints.Length; i++)
+        {
+            Instantiate(prefap, dir[i], Quaternion.identity);
+            prefap.Index = i;
             size++;
-            yield return delay;
+            yield return null;
         }
     }
 }
