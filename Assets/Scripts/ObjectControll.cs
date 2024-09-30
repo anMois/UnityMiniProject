@@ -7,6 +7,8 @@ public class ObjectControll : MonoBehaviour
 
     [SerializeField] float speed;
 
+    [SerializeField, Range(0f, 1f)] float downSpeed;
+
     [SerializeField] int index;
     [SerializeField] bool trust;
     [SerializeField] bool first;
@@ -16,7 +18,7 @@ public class ObjectControll : MonoBehaviour
 
     public int Index { set { index = value; } }
     public bool Trust { get { return trust; } }
-    public bool First { set { first = value; } }
+    public bool First { get { return first; } set { first = value; } }
     public bool Choice { set { choice = value; } }
 
     private void Start()
@@ -38,7 +40,8 @@ public class ObjectControll : MonoBehaviour
                 return;
 
             Debug.Log("1");
-            transform.position = Vector3.MoveTowards(transform.position, GetOffset(), 1);
+            transform.position = Vector3.MoveTowards(transform.position, GetOffset(), downSpeed);
+            //MoveTrail();
         }
     }
 
@@ -53,7 +56,7 @@ public class ObjectControll : MonoBehaviour
     {
         Vector3 offset = new Vector3(transform.position.x, transform.position.y, objData.zPoints[index--]);
 
-        transform.position = Vector3.MoveTowards(transform.position, offset, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, offset, 1);
     }
 
     private void OnTriggerEnter(Collider other)

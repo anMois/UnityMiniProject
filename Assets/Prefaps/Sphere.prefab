@@ -112,6 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objData: {fileID: 0}
   speed: 10
+  downSpeed: 1
   index: 0
   trust: 0
   first: 0
