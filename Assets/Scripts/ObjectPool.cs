@@ -26,6 +26,4 @@ public class ObjectPool : MonoBehaviour
             objPools.Enqueue(instance);
         }
     }
-
-    
 }

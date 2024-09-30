@@ -5,15 +5,14 @@ public class ObjectControll : MonoBehaviour
 {
     [SerializeField] ObjectData objData;
 
+    [Header("State")]
     [SerializeField] float speed;
-
-    [SerializeField, Range(0f, 1f)] float downSpeed;
-
     [SerializeField] int index;
     [SerializeField] bool trust;
     [SerializeField] bool first;
     [SerializeField] bool choice;
 
+    [Header("Next Move Vector3")]
     [SerializeField] Vector3 offset;
 
     public int Index { set { index = value; } }
@@ -41,7 +40,7 @@ public class ObjectControll : MonoBehaviour
                 return;
 
             Debug.Log("1");
-            transform.position = Vector3.MoveTowards(transform.position, GetOffset(), downSpeed);
+            transform.position = Vector3.MoveTowards(transform.position, GetOffset(), 1);
         }
     }
 
@@ -75,7 +74,8 @@ public class ObjectControll : MonoBehaviour
     {
         if (other.transform.CompareTag("Tray"))
         {
-            gameObject.SetActive(false);
+            objData.Size--;
+            Destroy(gameObject);
         }
     }
 }
