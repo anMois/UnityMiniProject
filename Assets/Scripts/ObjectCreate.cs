@@ -4,10 +4,10 @@ using UnityEngine;
 public class ObjectCreate : MonoBehaviour
 {
     [SerializeField] ObjectData data;
-    [SerializeField] ObjectControll prefap;
+    [SerializeField] ObjectControll[] prefaps;
     [SerializeField] int maxSize;
 
-    bool wait;
+    private bool wait;
 
     private void Start()
     {
@@ -29,14 +29,15 @@ public class ObjectCreate : MonoBehaviour
         Vector3[] dir = new Vector3[data.zPoints.Length];
         for (int i = 0; i < data.zPoints.Length; i++)
         {
-            dir[i] = new Vector3(0, prefap.transform.position.y, data.zPoints[i]);
+            dir[i] = new Vector3(0, transform.position.y, data.zPoints[i]);
         }
 
         for (int i = 0; i < data.zPoints.Length; i++)
         {
-            prefap.Index = i;
+            int num = RandomNum();
             data.Size++;
-            Instantiate(prefap, dir[i], Quaternion.identity);
+            ObjectControll objControll = Instantiate(prefaps[num], dir[i], Quaternion.identity);
+            objControll.Index = i;
             yield return null;
         }
         wait = true;
@@ -46,8 +47,15 @@ public class ObjectCreate : MonoBehaviour
     private void CreateObject()
     {
         Vector3 dir = new Vector3(transform.position.x, transform.position.y, data.zPoints[maxSize - 1]);
-        prefap.Index = maxSize - 1;
-        Instantiate(prefap, dir, Quaternion.identity);
+        ObjectControll objControll = Instantiate(prefaps[RandomNum()], dir, Quaternion.identity);
+        objControll.Index = maxSize - 1;
         data.Size++;
+    }
+
+    private int RandomNum()
+    {
+        int randNum = Random.Range(0, 2);
+
+        return randNum;
     }
 }
