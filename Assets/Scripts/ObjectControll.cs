@@ -24,16 +24,17 @@ public class ObjectControll : MonoBehaviour
     private void Start()
     {
         objData = GameObject.FindGameObjectWithTag("test").GetComponent<ObjectData>();
-
     }
 
     private void Update()
     {
+        //입력을 받고 현재 위치가 첫번째인 경우
         if (choice && first)
         {
             transform.position = Vector3.Lerp(transform.position, objData.GetPosition(trust), speed * Time.deltaTime);
         }
 
+        //현재 위치가 첫번째가 아닌경우
         if (Physics.Raycast(transform.position, Vector3.back, out RaycastHit hit, 0.5f) == false)
         {
             if (first || choice || index == 0 )
@@ -41,7 +42,6 @@ public class ObjectControll : MonoBehaviour
 
             Debug.Log("1");
             transform.position = Vector3.MoveTowards(transform.position, GetOffset(), downSpeed);
-            //MoveTrail();
         }
     }
 
@@ -50,13 +50,6 @@ public class ObjectControll : MonoBehaviour
         offset = new Vector3(transform.position.x, transform.position.y, objData.zPoints[--index]);
 
         return offset;
-    }
-
-    private void MoveTrail()
-    {
-        Vector3 offset = new Vector3(transform.position.x, transform.position.y, objData.zPoints[index--]);
-
-        transform.position = Vector3.MoveTowards(transform.position, offset, 1);
     }
 
     private void OnTriggerEnter(Collider other)
