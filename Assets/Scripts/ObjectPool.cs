@@ -22,7 +22,6 @@ public class ObjectPool : MonoBehaviour
             {
                 ObjectControll instance = Instantiate(prefaps[y], transform.position, Quaternion.identity);
                 instance.transform.parent = transform;
-                instance.objPool = this;
                 instance.gameObject.SetActive(false);
                 objPools.Add(instance);
             }
@@ -36,14 +35,15 @@ public class ObjectPool : MonoBehaviour
         if (objPools.Count > 0)
         {
             int randNum = RandomNum();
-            Debug.Log(randNum);
+
             ObjectControll instance = objPools[randNum];
             instance.transform.position = position;
             instance.transform.parent = null;
             instance.gameObject.SetActive(true);
-            instance.objPool = this;
 
             objPools.RemoveAt(randNum);
+            
+            //사용 후 제자리
             choice[randNum] = false;
 
             return instance;
@@ -62,6 +62,8 @@ public class ObjectPool : MonoBehaviour
     private int RandomNum()
     {
         int randNum = Random.Range(0, objPools.Count);
+
+        //중복되지 않는 숫자 얻기
         if (choice[randNum] == false)
         {
             choice[randNum] = true;

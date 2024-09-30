@@ -856,83 +856,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
---- !u!1 &990081922
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 990081925}
-  - component: {fileID: 990081924}
-  - component: {fileID: 990081923}
-  m_Layer: 0
-  m_Name: ObjectCreat
-  m_TagString: test
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &990081923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 990081922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e88a029287bd3fd4689aaf9b02706e9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data: {fileID: 0}
-  pool: {fileID: 0}
-  prefaps:
-  - {fileID: 3356490511601927524, guid: bbcd713591ce0044e9ba570b36d2b443, type: 3}
-  - {fileID: 3356490511601927524, guid: 7f5c33f3fecba7741885685cb527c10d, type: 3}
-  maxSize: 0
---- !u!114 &990081924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 990081922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 536133fdb89da4b498db8799c40a487c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zPoints:
-  - -6.8
-  - -6.2
-  - -5.6
-  - -5
-  - -4.4
-  - -3.8
-  - -3.2
-  - -2.6
-  - -2
-  - -1.4
-  leftPoint: {fileID: 538273637}
-  righttPoint: {fileID: 1430010252}
-  size: 0
---- !u!4 &990081925
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 990081922}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1043639783
 GameObject:
   m_ObjectHideFlags: 0
@@ -1080,7 +1003,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objPools: []
-  prefaps: {fileID: 3356490511601927524, guid: 7f5c33f3fecba7741885685cb527c10d, type: 3}
+  prefaps:
+  - {fileID: 3356490511601927524, guid: bbcd713591ce0044e9ba570b36d2b443, type: 3}
+  - {fileID: 3356490511601927524, guid: 7f5c33f3fecba7741885685cb527c10d, type: 3}
   data: {fileID: 0}
   size: 10
 --- !u!4 &1184077921
@@ -1138,7 +1063,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 0}
   pool: {fileID: 0}
-  prefaps: []
   maxSize: 0
 --- !u!1 &1430010251
 GameObject:

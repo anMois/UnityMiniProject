@@ -3,10 +3,11 @@ using UnityEngine;
 
 public class ObjectCreate : MonoBehaviour
 {
+    [Header("GetComponent")]
     [SerializeField] ObjectData data;
     [SerializeField] ObjectPool pool;
-    [SerializeField] ObjectControll[] prefaps;
-    [SerializeField] int maxSize;
+
+    [SerializeField, Space] int maxSize;
 
     private bool wait;
 
@@ -38,7 +39,6 @@ public class ObjectCreate : MonoBehaviour
         {
             data.Size++;
             ObjectControll objControll = pool.GetObject(dir[i]);
-                //Instantiate(prefaps[num], dir[i], Quaternion.identity);
             objControll.Index = i;
             yield return null;
         }
@@ -50,15 +50,7 @@ public class ObjectCreate : MonoBehaviour
     {
         Vector3 dir = new Vector3(transform.position.x, transform.position.y, data.zPoints[maxSize - 1]);
         ObjectControll objControll = pool.GetObject(dir);
-            //Instantiate(prefaps[RandomNum()], dir, Quaternion.identity);
         objControll.Index = maxSize - 1;
         data.Size++;
-    }
-
-    private int RandomNum()
-    {
-        int randNum = Random.Range(0, 2);
-
-        return randNum;
     }
 }

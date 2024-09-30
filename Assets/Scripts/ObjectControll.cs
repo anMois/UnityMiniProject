@@ -77,7 +77,6 @@ public class ObjectControll : MonoBehaviour
         {
             objData.Size--;
             choice = false;
-            //Destroy(gameObject);
             objPool.RetrunObject(this);
         }
     }
