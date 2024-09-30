@@ -4,6 +4,7 @@ using UnityEngine;
 public class ObjectCreate : MonoBehaviour
 {
     [SerializeField] ObjectData data;
+    [SerializeField] ObjectPool pool;
     [SerializeField] ObjectControll[] prefaps;
     [SerializeField] int maxSize;
 
@@ -12,6 +13,7 @@ public class ObjectCreate : MonoBehaviour
     private void Start()
     {
         data = GetComponent<ObjectData>();
+        pool = GetComponent<ObjectPool>();
         maxSize = data.zPoints.Length;
         StartCoroutine(StartCreateRoutine());
     }
@@ -34,9 +36,9 @@ public class ObjectCreate : MonoBehaviour
 
         for (int i = 0; i < data.zPoints.Length; i++)
         {
-            int num = RandomNum();
             data.Size++;
-            ObjectControll objControll = Instantiate(prefaps[num], dir[i], Quaternion.identity);
+            ObjectControll objControll = pool.GetObject(dir[i]);
+                //Instantiate(prefaps[num], dir[i], Quaternion.identity);
             objControll.Index = i;
             yield return null;
         }
@@ -47,7 +49,8 @@ public class ObjectCreate : MonoBehaviour
     private void CreateObject()
     {
         Vector3 dir = new Vector3(transform.position.x, transform.position.y, data.zPoints[maxSize - 1]);
-        ObjectControll objControll = Instantiate(prefaps[RandomNum()], dir, Quaternion.identity);
+        ObjectControll objControll = pool.GetObject(dir);
+            //Instantiate(prefaps[RandomNum()], dir, Quaternion.identity);
         objControll.Index = maxSize - 1;
         data.Size++;
     }

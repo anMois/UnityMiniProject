@@ -4,6 +4,7 @@ using UnityEngine;
 public class ObjectControll : MonoBehaviour
 {
     [SerializeField] ObjectData objData;
+    public ObjectPool objPool;
 
     [Header("State")]
     [SerializeField] float speed;
@@ -17,12 +18,13 @@ public class ObjectControll : MonoBehaviour
 
     public int Index { set { index = value; } }
     public bool Trust { get { return trust; } }
-    public bool First { get { return first; } set { first = value; } }
+    public bool First { set { first = value; } }
     public bool Choice { set { choice = value; } }
 
-    private void Start()
+    private void Awake()
     {
         objData = GameObject.FindGameObjectWithTag("test").GetComponent<ObjectData>();
+        objPool = GameObject.FindGameObjectWithTag("test").GetComponent<ObjectPool>();
     }
 
     private void Update()
@@ -39,7 +41,6 @@ public class ObjectControll : MonoBehaviour
             if (first || choice || index == 0 )
                 return;
 
-            Debug.Log("1");
             transform.position = Vector3.MoveTowards(transform.position, GetOffset(), 1);
         }
     }
@@ -75,7 +76,9 @@ public class ObjectControll : MonoBehaviour
         if (other.transform.CompareTag("Tray"))
         {
             objData.Size--;
-            Destroy(gameObject);
+            choice = false;
+            //Destroy(gameObject);
+            objPool.RetrunObject(this);
         }
     }
 }

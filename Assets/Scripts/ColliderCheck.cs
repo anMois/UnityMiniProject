@@ -8,11 +8,11 @@ public class ColliderCheck : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
             x = -1;
         }
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
             x = 1;
         }
@@ -34,13 +34,11 @@ public class ColliderCheck : MonoBehaviour
             //입력했다고 알림
             if (x == -1 && objControll.Trust)
             {
-                Debug.Log("11");
                 objControll.Choice = true;
                 x = 0;
             }
             else if (x == 1 && !objControll.Trust)
             {
-                Debug.Log("22");
                 objControll.Choice = true;
                 x = 0;
             }
