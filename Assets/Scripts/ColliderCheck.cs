@@ -31,7 +31,7 @@ public class ColliderCheck : MonoBehaviour
     {
         if (other.transform.CompareTag("Object"))
         {
-            //입력했다고 알림
+            //제대로된 입력
             if (x == -1 && objControll.Trust)
             {
                 objControll.Choice = true;

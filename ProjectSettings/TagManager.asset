@@ -5,8 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Object
-  - test
   - Tray
+  - ObjectData
   layers:
   - Default
   - TransparentFX

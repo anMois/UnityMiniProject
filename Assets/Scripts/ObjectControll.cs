@@ -23,8 +23,8 @@ public class ObjectControll : MonoBehaviour
 
     private void Awake()
     {
-        objData = GameObject.FindGameObjectWithTag("test").GetComponent<ObjectData>();
-        objPool = GameObject.FindGameObjectWithTag("test").GetComponent<ObjectPool>();
+        objData = GameObject.FindGameObjectWithTag("ObjectData").GetComponent<ObjectData>();
+        objPool = GameObject.FindGameObjectWithTag("ObjectData").GetComponent<ObjectPool>();
     }
 
     private void Update()
