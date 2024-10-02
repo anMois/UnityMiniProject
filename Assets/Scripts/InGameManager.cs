@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 public class InGameManager : MonoBehaviour
 {
@@ -11,8 +9,11 @@ public class InGameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI curScoreText;
     [SerializeField] TextMeshProUGUI bestScoreText;
     [SerializeField] GameObject recordText;
+    [SerializeField] Slider feverGauge;
 
-    [SerializeField, Space] int curScore;
+    [Space]
+    [SerializeField] int curScore;
+    [SerializeField, Range(0, 0.5f)] float getFeverGauge;
 
     private StringBuilder sb = new StringBuilder();
 
@@ -34,13 +35,27 @@ public class InGameManager : MonoBehaviour
         text.SetText(sb);
     }
 
-    public void GetScore()
-    {
-        curScore += GameManager.SCORE;
-    }
-
     private void LateUpdate()
     {
         TextBuilder(curScore.ToString(), curScoreText);
+    }
+
+    public void GetScore()
+    {
+        curScore += GameManager.SCORE;
+        FeverGauge();
+    }
+
+    private void FeverGauge()
+    {
+        if (feverGauge.value == feverGauge.maxValue)
+        {
+            feverGauge.value = feverGauge.minValue;
+        }
+        else
+        {
+            feverGauge.value += getFeverGauge;
+        }
+
     }
 }
