@@ -14,6 +14,7 @@ public class InGameManager : MonoBehaviour
     [Space]
     [SerializeField] int curScore;
     [SerializeField, Range(0, 0.5f)] float getFeverGauge;
+    [SerializeField] bool fever;
 
     private StringBuilder sb = new StringBuilder();
 
@@ -38,24 +39,37 @@ public class InGameManager : MonoBehaviour
     private void LateUpdate()
     {
         TextBuilder(curScore.ToString(), curScoreText);
+        FeverGaugeDown();
     }
 
     public void GetScore()
     {
         curScore += GameManager.SCORE;
-        FeverGauge();
+        FeverGaugeUp();
     }
 
-    private void FeverGauge()
+    private void FeverGaugeUp()
     {
+        if (fever) return;
+
         if (feverGauge.value == feverGauge.maxValue)
         {
-            feverGauge.value = feverGauge.minValue;
+            fever = true;
         }
         else
         {
             feverGauge.value += getFeverGauge;
         }
+    }
 
+    private void FeverGaugeDown()
+    {
+        if (fever)
+        {
+            if (feverGauge.value == feverGauge.minValue)
+                fever = false;
+            else
+                feverGauge.value -= getFeverGauge * Time.deltaTime;
+        }
     }
 }
