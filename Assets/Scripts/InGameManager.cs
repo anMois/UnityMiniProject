@@ -9,18 +9,24 @@ public class InGameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI curScoreText;
     [SerializeField] TextMeshProUGUI highScoreText;
     [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI comboText;
     [SerializeField] GameObject recordText;
+    [SerializeField] GameObject combo;
     [SerializeField] Slider feverGauge;
     [SerializeField] Animator animator;
 
-    [Space]
+    [Space, Header("State")]
     [SerializeField] int curScore;
     [SerializeField] int score;
+    [SerializeField] int comboCount;
     [SerializeField, Range(0, 0.5f)] float getFeverGauge;
+    [SerializeField, Range(0, 5)] int getComboCount;
     [SerializeField] bool fever;
 
     private StringBuilder sb = new StringBuilder();
     private int highScore;
+
+    public int ComboCount { get { return comboCount; } set { comboCount = value; } }
 
     private void Awake()
     {
@@ -29,29 +35,26 @@ public class InGameManager : MonoBehaviour
         highScore = GameManager.Instance.HighScore;
     }
 
-    private void OnDisable()
-    {
-        if (recordText.activeSelf)
-            GameManager.Instance.HighScore = curScore;
-    }
-
     private void LateUpdate()
     {
         TextBuilder(curScore.ToString(), curScoreText);
         FeverGaugeDown();
+        ShowComboCount();
 
-        if(highScore < curScore)
+        if (highScore < curScore)
         {
             recordText.SetActive(true);
             TextBuilder(curScore.ToString(), highScoreText);
         }
     }
+
     private void Init()
     {
         TextBuilder(curScore.ToString(), curScoreText);
         TextBuilder(highScore.ToString(), highScoreText);
         recordText.SetActive(false);
-        feverGauge.value = 0;
+        combo.SetActive(false);
+        feverGauge.value = comboCount = 0;
     }
 
     private void TextBuilder(string msg, TextMeshProUGUI text)
@@ -98,5 +101,18 @@ public class InGameManager : MonoBehaviour
                 feverGauge.value -= getFeverGauge * Time.deltaTime;
             }
         }
+    }
+
+    private void ShowComboCount()
+    {
+        if (comboCount >= getComboCount)
+        {
+            combo.SetActive(true);
+        }
+        else
+        {
+            combo.SetActive(false);
+        }
+        TextBuilder(comboCount.ToString(), comboText);
     }
 }
