@@ -44,14 +44,19 @@ public class InGameManager : MonoBehaviour
 
     public void GetScore()
     {
-        curScore += GameManager.SCORE;
-        FeverGaugeUp();
+        if (fever)
+        {
+            curScore += GameManager.SCORE * 2;
+        }
+        else
+        {
+            curScore += GameManager.SCORE;
+            FeverGaugeUp();
+        }
     }
 
     private void FeverGaugeUp()
     {
-        if (fever) return;
-
         if (feverGauge.value == feverGauge.maxValue)
         {
             fever = true;
@@ -67,9 +72,13 @@ public class InGameManager : MonoBehaviour
         if (fever)
         {
             if (feverGauge.value == feverGauge.minValue)
+            {
                 fever = false;
-            else
+            }
+            else 
+            {
                 feverGauge.value -= getFeverGauge * Time.deltaTime;
+            }
         }
     }
 }
