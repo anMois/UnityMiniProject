@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class InGameManager : MonoBehaviour
 {
@@ -24,7 +25,6 @@ public class InGameManager : MonoBehaviour
     {
         TextBuilder(curScore.ToString(), curScoreText);
         recordText.SetActive(false);
-
     }
 
     private void TextBuilder(string msg, TextMeshProUGUI text)
@@ -32,5 +32,15 @@ public class InGameManager : MonoBehaviour
         sb.Clear();
         sb.Append(msg);
         text.SetText(sb);
+    }
+
+    public void GetScore()
+    {
+        curScore += GameManager.SCORE;
+    }
+
+    private void LateUpdate()
+    {
+        TextBuilder(curScore.ToString(), curScoreText);
     }
 }

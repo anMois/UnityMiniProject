@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ColliderCheck : MonoBehaviour
 {
+    [SerializeField] InGameManager inGm;
     [SerializeField] ObjectControll objControll;
 
     [SerializeField] float x = 0;
@@ -32,16 +33,17 @@ public class ColliderCheck : MonoBehaviour
         if (other.transform.CompareTag("Object"))
         {
             //제대로된 입력
-            if (x == -1 && objControll.Trust)
+            if ((x == -1 && objControll.Trust) || (x == 1 && !objControll.Trust))
             {
-                objControll.Choice = true;
-                x = 0;
-            }
-            else if (x == 1 && !objControll.Trust)
-            {
-                objControll.Choice = true;
-                x = 0;
+                ChoiceTrue();
             }
         }
+    }
+
+    private void ChoiceTrue()
+    {
+        objControll.Choice = true;
+        inGm.GetScore();
+        x = 0;
     }
 }

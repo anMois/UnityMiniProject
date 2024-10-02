@@ -75,6 +75,7 @@ public class ObjectControll : MonoBehaviour
     {
         if (other.transform.CompareTag("Tray"))
         {
+            //오브젝트가 나가면 일어나는 일
             objData.Size--;
             choice = false;
             objPool.RetrunObject(this);
