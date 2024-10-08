@@ -37,11 +37,9 @@ public class ColliderCheck : MonoBehaviour
             {
                 ChoiceTrue();
                 inGm.ComboCount++;
-                Debug.Log("1");
             }
             else if((x == -1 && !objControll.Trust) || (x == 1 && objControll.Trust))
             {
-                Debug.Log("2");
                 inGm.ComboCount = 0;
             }
         }
