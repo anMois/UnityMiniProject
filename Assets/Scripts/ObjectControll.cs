@@ -3,7 +3,7 @@ using UnityEngine;
 public class ObjectControll : MonoBehaviour
 {
     [SerializeField] ObjectData objData;
-    public ObjectPool objPool;
+    [SerializeField] ObjectPool objPool;
 
     [Header("State")]
     [SerializeField] float speed;
@@ -22,7 +22,10 @@ public class ObjectControll : MonoBehaviour
 
     private void Awake()
     {
+        // 레일 위에서 다음으로 이동할 좌표값, 첫번째일 때 이동할 좌표값을 받기 위해
         objData = GameObject.FindGameObjectWithTag("ObjectData").GetComponent<ObjectData>();
+
+        // 오브젝트풀로 들어가기 위해
         objPool = GameObject.FindGameObjectWithTag("ObjectData").GetComponent<ObjectPool>();
     }
 
@@ -37,7 +40,7 @@ public class ObjectControll : MonoBehaviour
         //현재 위치가 첫번째가 아닌경우
         if (Physics.Raycast(transform.position, Vector3.back, out RaycastHit hit, 0.5f) == false)
         {
-            if (first || choice || index == 0 )
+            if (first || index == 0 )
                 return;
 
             transform.position = Vector3.MoveTowards(transform.position, GetOffset(), 1);
