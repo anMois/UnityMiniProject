@@ -5,15 +5,12 @@ public class ObjectPool : MonoBehaviour
 {
     [SerializeField] List<ObjectControll> objPools = new List<ObjectControll>();
     [SerializeField] ObjectControll[] prefaps;
-    [SerializeField] ObjectData data;
     [SerializeField] int size;
 
     private bool[] choice;
 
     private void Awake()
     {
-        data = GetComponent<ObjectData>();
-
         //prefapsÀÇ Á¾·ù
         for (int y = 0; y < prefaps.Length; y++)
         {

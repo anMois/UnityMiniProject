@@ -32,7 +32,7 @@ public class InGameManager : MonoBehaviour
     {
         Init();
         score = GameManager.SCORE;
-        highScore = GameManager.Instance.HighScore;
+        //highScore = GameManager.Instance.HighScore;
     }
 
     private void LateUpdate()
@@ -41,7 +41,7 @@ public class InGameManager : MonoBehaviour
         FeverGaugeDown();
         ShowComboCount();
 
-        if (highScore < curScore)
+        if (GameManager.Instance.HighScore < curScore)
         {
             recordText.SetActive(true);
             TextBuilder(curScore.ToString(), highScoreText);
