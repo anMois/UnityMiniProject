@@ -16,7 +16,7 @@ public class ObjectCreate : MonoBehaviour
         data = GetComponent<ObjectData>();
         pool = GetComponent<ObjectPool>();
         maxSize = data.zPoints.Length;
-        StartCoroutine(StartCreateRoutine());
+        StartCreateObject();
     }
 
     private void Update()
@@ -27,7 +27,8 @@ public class ObjectCreate : MonoBehaviour
         }
     }
 
-    IEnumerator StartCreateRoutine()
+    // 게임 시작시 레일 위에 오브젝트 생성
+    void StartCreateObject()
     {
         Vector3[] dir = new Vector3[data.zPoints.Length];
         for (int i = 0; i < data.zPoints.Length; i++)
@@ -40,10 +41,8 @@ public class ObjectCreate : MonoBehaviour
             data.Size++;
             ObjectControll objControll = pool.GetObject(dir[i]);
             objControll.Index = i;
-            yield return null;
         }
         wait = true;
-        yield break;
     }
 
     private void CreateObject()
